@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import TaskForm from "./TaskForm";
+import TaskList from "./TaskList";
+import SearchBar from "./SearchBar";
+import './index.css';
+const App = () => {
+  const [tasks, setTasks] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortCriteria, setSortCriteria] = useState("");
 
-function App() {
-  const [count, setCount] = useState(0)
+  // Load tasks from local storage
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    setTasks(storedTasks);
+  }, []);
+
+  // Save tasks to local storage
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = (task) => {
+    setTasks([...tasks, task]);
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const handleSort = (criteria) => {
+    setSortCriteria(criteria);
+  };
+
+  const filteredTasks = tasks
+    .filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortCriteria === "priority") {
+        return a.priorityLevel.localeCompare(b.priorityLevel);
+      }
+      if (sortCriteria === "completed") {
+        return a.completed - b.completed;
+      }
+      return new Date(b.date) - new Date(a.date);
+    });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="container mt-5">
+      <h2 className="text-center text-blue-500">Task Manager</h2>
+      <TaskForm addTask={addTask} />
+      <SearchBar onSearch={handleSearch} onSort={handleSort} />
+      <TaskList
+        tasks={filteredTasks}
+        deleteTask={deleteTask}
+        toggleComplete={toggleComplete}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
