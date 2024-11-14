@@ -17,6 +17,5 @@
 </ol>
 
 <h2>Images of the project </h2>
-![image](https://github.com/user-attachments/assets/13bb9e71-9bd3-4bfd-bd6f-768b5c2c89b5)
-
+![screenshot](screenshot.png)
 
