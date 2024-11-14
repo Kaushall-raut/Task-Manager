@@ -1,8 +1,22 @@
-# React + Vite
+# Task Manager Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1>Functionality of Task Manager</h1>
+<ul>
+  <li> You can add a task with a title, priority, and a completion status which will be saved in your computer local storage.</li>
+  <li>You can also delete the task .</li>
+  <li>You can also sort task list  based on the option you choose . </li>
+  <li>Also provided a searching feature to find specific task from their name. </li>
+</ul>
 
-Currently, two official plugins are available:
+<h1>How To setup and run this project in your local machine </h1>
+<ol>
+  <li>First clone this repo in your local machine or you can also download this repository . </li>
+  <li>Now open vs code and write npm install in your terminal and hit enter (*Note:Ensure that your machine is connected to the internet.).</li>
+  <li>Now type npm run dev in vs code terminal to run the project . </li>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</ol>
+
+<h2>Images of the project </h2>
+![image](https://github.com/user-attachments/assets/13bb9e71-9bd3-4bfd-bd6f-768b5c2c89b5)
+
+
