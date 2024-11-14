@@ -11,7 +11,7 @@
 <h1>How To setup and run this project in your local machine </h1>
 <ol>
   <li>First clone this repo in your local machine or you can also download this repository . </li>
-  <li>Now open vs code and write npm install in your terminal and hit enter (*Note:Ensure that your machine is connected to the internet.).</li>
+  <li>Now open vs code and write npm install in your terminal and hit enter (*Note:Ensure that your machine is connected to the internet and also download nodejs if not downloaded.).</li>
   <li>Now type npm run dev in vs code terminal to run the project . </li>
 
 </ol>
