@@ -15,3 +15,8 @@
   <li>Now type npm run dev in vs code terminal to run the project . </li>
 
 </ol>
+
+<h2>Images of the project </h2>
+![image](https://github.com/user-attachments/assets/13bb9e71-9bd3-4bfd-bd6f-768b5c2c89b5)
+
+
