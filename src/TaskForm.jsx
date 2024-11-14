@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
-const TaskForm = ({ addTask }) => {
+export const TaskForm = ({ addTask }) => {
   const [title, setTitle] = useState("");
   const [priorityLevel, setPriorityLevel] = useState("Low");
 
@@ -30,14 +30,15 @@ const TaskForm = ({ addTask }) => {
         onChange={(e) => setTitle(e.target.value)}
         className="input input-bordered w-full md:w-2/3 transition-all focus:ring-2 focus:ring-primary"
       />
+    
       <select
         value={priorityLevel}
         onChange={(e) => setPriorityLevel(e.target.value)}
         className="select select-bordered w-full md:w-1/4"
       >
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
+        <option value="Low">Low Priority</option>
+        <option value="Medium">Medium priority</option>
+        <option value="High">High Priority</option>
       </select>
       <button
         type="submit"
@@ -49,4 +50,3 @@ const TaskForm = ({ addTask }) => {
   );
 };
 
-export default TaskForm;

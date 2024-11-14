@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 
-const SearchBar = ({ onSearch, onSort }) => {
+export const SearchBar = ({ onSearch, onSort }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (e) => {
@@ -17,11 +17,12 @@ const SearchBar = ({ onSearch, onSort }) => {
         onChange={handleSearchChange}
         className="input input-bordered w-full md:w-2/3 transition-all focus:ring-2 focus:ring-primary"
       />
+        <label htmlFor="sort" className="text-black text-lg text-1xl font-semibold">Sort by:</label>
       <select
         onChange={(e) => onSort(e.target.value)}
         className="select select-bordered w-full md:w-1/3"
       >
-        <option value="">Sort by</option>
+       
         <option value="priority">Priority</option>
         <option value="completed">Completed</option>
         <option value="date">Date</option>
@@ -30,4 +31,3 @@ const SearchBar = ({ onSearch, onSort }) => {
   );
 };
 
-export default SearchBar;

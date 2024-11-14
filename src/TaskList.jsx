@@ -1,6 +1,6 @@
-import React from "react";
-import { MdDeleteForever } from "react-icons/md";
-const TaskList = ({ tasks, deleteTask, toggleComplete }) => {
+
+import { MdDeleteForever } from "react-icons/md"; 
+export const TaskList = ({ tasks, deleteTask, toggleComplete }) => {
   return (
     <ul className="space-y-3">
       {tasks.length === 0 ? (
@@ -10,7 +10,7 @@ const TaskList = ({ tasks, deleteTask, toggleComplete }) => {
           <li
             key={task.id}
             className={`flex justify-between items-center p-4 rounded-lg shadow-md transition-transform duration-300 ${
-              task.completed ? "bg-green-100 line-through" : "bg-base-100"
+              task.completed ? "bg-green-100 line-through decoration-black" : "bg-base-100"
             } hover:scale-105 animate-fade-in`}
           >
             <div className="flex items-center gap-2">
@@ -52,4 +52,4 @@ const TaskList = ({ tasks, deleteTask, toggleComplete }) => {
   );
 };
 
-export default TaskList;
+

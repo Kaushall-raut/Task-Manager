@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import TaskForm from "./TaskForm";
-import TaskList from "./TaskList";
-import SearchBar from "./SearchBar";
+import { useState, useEffect } from "react";
+import {TaskForm} from "./TaskForm";
+import {TaskList} from "./TaskList";
+import {SearchBar} from "./SearchBar";
 
-const App = () => {
-  // Initialize tasks from localStorage
+export const App = () => {
+  // ! this section contains code for task initialising 
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -13,23 +13,23 @@ const App = () => {
   const [filteredTasks, setFilteredTasks] = useState(tasks);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Save tasks to localStorage whenever they change
+  // ! this section contains to code for saving the task in local storage
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    handleSearch(searchTerm); // Reapply search after tasks update
+    handleSearch(searchTerm);
   }, [tasks]);
 
-  // Add a new task
+  //! Adding new task code
   const addTask = (task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
   };
 
-  // Delete a task
+  // ! code for deleting task
   const deleteTask = (id) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
-  // Toggle task completion
+
   const toggleComplete = (id) => {
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -38,7 +38,7 @@ const App = () => {
     );
   };
 
-  // Handle task search
+
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
     const filtered = tasks.filter((task) =>
@@ -47,19 +47,19 @@ const App = () => {
     setFilteredTasks(filtered);
   };
 
-  // Sort tasks by selected criteria
+//!logic for sorting
   const handleSort = (sortType) => {
     let sortedTasks = [...tasks];
     if (sortType === "priority") {
       const priorityOrder = { High: 3, Medium: 2, Low: 1 };
-      sortedTasks.sort(    (a, b) => priorityOrder[b.priorityLevel] - priorityOrder[a.priorityLevel]  ); // Sort by priority
+      sortedTasks.sort(    (a, b) => priorityOrder[b.priorityLevel] - priorityOrder[a.priorityLevel]  ); 
     } else if (sortType === "completed") {
-      sortedTasks.sort((a, b) => Number(b.completed) - Number(a.completed)); // Sort by completed status
+      sortedTasks.sort((a, b) => Number(b.completed) - Number(a.completed)); 
     } else if (sortType === "date") {
-      sortedTasks.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date
+      sortedTasks.sort((a, b) => new Date(b.date) - new Date(a.date)); 
     }
-    setTasks(sortedTasks);  // Update tasks state
-    setFilteredTasks(sortedTasks);  // Update filtered tasks state
+    setTasks(sortedTasks);  
+    setFilteredTasks(sortedTasks);
   };
 
   return (
@@ -80,4 +80,4 @@ const App = () => {
   );
 };
 
-export default App;
+
