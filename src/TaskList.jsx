@@ -1,32 +1,49 @@
-import React from 'react';
-
+import React from "react";
+import { MdDeleteForever } from "react-icons/md";
 const TaskList = ({ tasks, deleteTask, toggleComplete }) => {
   return (
-    <ul className="list-group">
+    <ul className="space-y-3">
       {tasks.length === 0 ? (
-        <li className="list-group-item text-center">No tasks found</li>
+        <li className="text-center text-gray-500">No tasks found</li>
       ) : (
         tasks.map((task) => (
           <li
             key={task.id}
-            className={`list-group-item d-flex justify-content-between align-items-center ${
-              task.completed ? 'list-group-item-success' : ''
-            }`}
+            className={`flex justify-between items-center p-4 rounded-lg shadow-md transition-transform duration-300 ${
+              task.completed ? "bg-green-100 line-through" : "bg-base-100"
+            } hover:scale-105 animate-fade-in`}
           >
-            <span>
+            <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleComplete(task.id)}
-                className="form-check-input me-2"
+                className="checkbox checkbox-primary"
               />
-              {task.title} <span className="badge bg-info ms-2">{task.priorityLevel}</span>
-            </span>
+              <span
+                className={`flex-1 text-lg ${
+                  task.completed ? "text-black" : "text-white"
+                }`}
+              >
+                {task.title}
+              </span>
+              <span
+                className={`badge ${
+                  task.priorityLevel === "High"
+                    ? "badge-error"
+                    : task.priorityLevel === "Medium"
+                    ? "badge-warning"
+                    : "badge-success"
+                } animate-bounce`}
+              >
+                {task.priorityLevel}
+              </span>
+            </div>
             <button
-              className="btn btn-danger btn-sm"
               onClick={() => deleteTask(task.id)}
+              className="btn btn-sm btn-error hover:bg-red-600 hover:scale-105 transition-transform text-2xl"
             >
-              Delete
+          <MdDeleteForever />
             </button>
           </li>
         ))

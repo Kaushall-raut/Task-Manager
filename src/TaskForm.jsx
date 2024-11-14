@@ -1,48 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const TaskForm = ({ addTask }) => {
-  const [title, setTitle] = useState('');
-  const [priorityLevel, setPriorityLevel] = useState('Low');
+  const [title, setTitle] = useState("");
+  const [priorityLevel, setPriorityLevel] = useState("Low");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim()) {
-      const newTask = {
+      addTask({
         id: Date.now(),
         title,
         priorityLevel,
         completed: false,
         date: new Date().toISOString(),
-      };
-      addTask(newTask);
-      setTitle('');
+      });
+      setTitle("");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-3">
-      <div className="input-group mb-2">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Add new task"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <select
-          className="form-select"
-          value={priorityLevel}
-          onChange={(e) => setPriorityLevel(e.target.value)}
-        >
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-        <button type="submit" className="btn btn-secondary">
-          Add Task
-        </button>
-        <button className="btn btn-secondary">Secondary</button>
-      </div>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col md:flex-row gap-3 mb-4 animate-slide-in"
+    >
+      <input
+        type="text"
+        placeholder="Add new task"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="input input-bordered w-full md:w-2/3 transition-all focus:ring-2 focus:ring-primary"
+      />
+      <select
+        value={priorityLevel}
+        onChange={(e) => setPriorityLevel(e.target.value)}
+        className="select select-bordered w-full md:w-1/4"
+      >
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+      <button
+        type="submit"
+        className="btn btn-primary w-full md:w-1/5 hover:scale-105 transition-transform"
+      >
+        Add Task
+      </button>
     </form>
   );
 };
